@@ -27,7 +27,7 @@ resource "google_iam_workload_identity_pool_provider" "example" {
     for_each = lookup(each.value, "select_provider", null) == "oidc" ? ["1"] : [] 
     content {
       issuer_uri = each.value.provider_config.issuer_uri
-      allowed_audiences = lookup(each.value, "provider_config.allowed_audiences", null) == null ? null : each.value.allowed_audiences
+      allowed_audiences = lookup(each.value.provider_config, "allowed_audiences", null) == null ? null : each.value.provider_config.allowed_audiences
     }
   }
 
