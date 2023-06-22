@@ -27,6 +27,7 @@ module "wif" {
     select_provider      = "oidc"
     provider_config      = {
                              issuer_uri = "https://token.actions.githubusercontent.com"
+                             allowed_audiences = "https://example.com/gcp-oidc-federation,example.com/gcp-oidc-federation" 
                            }
     disabled             = false
     attribute_condition  = "\"e968c2ef-047c-498d-8d79-16ca1b61e77e\" in assertion.groups"

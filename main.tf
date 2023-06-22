@@ -7,7 +7,7 @@ resource "google_iam_workload_identity_pool" "example" {
 }
 
 resource "google_iam_workload_identity_pool_provider" "example" {
-  for_each = {for i in var.wif_providers: i.provider_id => i}
+  for_each                           = { for i in var.wif_providers : i.provider_id => i }
   workload_identity_pool_id          = google_iam_workload_identity_pool.example.workload_identity_pool_id
   workload_identity_pool_provider_id = each.value.provider_id
   project                            = var.project_id
@@ -24,18 +24,18 @@ resource "google_iam_workload_identity_pool_provider" "example" {
     }
   }
   dynamic "oidc" {
-    for_each = lookup(each.value, "select_provider", null) == "oidc" ? ["1"] : [] 
+    for_each = lookup(each.value, "select_provider", null) == "oidc" ? ["1"] : []
     content {
-      issuer_uri = each.value.provider_config.issuer_uri
-      allowed_audiences = lookup(each.value.provider_config, "allowed_audiences", null) == null ? null : each.value.provider_config.allowed_audiences
+      issuer_uri        = each.value.provider_config.issuer_uri
+      allowed_audiences = lookup(each.value.provider_config, "allowed_audiences", null) == null ? null : split(",", each.value.provider_config.allowed_audiences)
     }
   }
 
 }
 
 resource "google_service_account" "service_account" {
-  for_each = toset([for sa_name in var.service_accounts: sa_name.name])
-  account_id   = each.value
+  for_each   = toset([for sa_name in var.service_accounts : sa_name.name])
+  account_id = each.value
   project    = var.project_id
 }
 

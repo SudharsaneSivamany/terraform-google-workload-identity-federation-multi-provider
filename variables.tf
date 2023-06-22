@@ -1,28 +1,28 @@
 variable "pool_id" {
-type = string
+  type = string
 }
 
 variable "project_id" {
-type = string
+  type = string
 }
 
 variable "pool_display_name" {
-type = string
-default = null
+  type    = string
+  default = null
 }
 
 variable "pool_description" {
-type = string
-default = null 
+  type    = string
+  default = null
 }
 
 variable "pool_disabled" {
-type = bool
-default = false
+  type    = bool
+  default = false
 }
 
 variable "wif_providers" {
-type = list(any)
+  type = list(any)
 }
 
 variable "service_accounts" {
