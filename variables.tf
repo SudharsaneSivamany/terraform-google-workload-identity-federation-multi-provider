@@ -30,5 +30,6 @@ variable "service_accounts" {
     name           = string
     attribute      = string
     all_identities = bool
+    roles          = list(string)
   }))
 }

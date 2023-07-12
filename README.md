@@ -56,6 +56,7 @@ module "wif" {
       name           = "wif-sa-1"
       attribute      = "attribute.repository/my-org/my-repo"
       all_identities = true
+      roles          = ["roles/compute.admin"]
     }
   ]
 }
@@ -94,7 +95,7 @@ module "wif" {
 | <a name="input_pool_display_name"></a> [pool\_display\_name](#input\_pool\_display\_name) | n/a | `string` | `null` | no |
 | <a name="input_pool_id"></a> [pool\_id](#input\_pool\_id) | n/a | `string` | n/a | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | n/a | `string` | n/a | yes |
-| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | n/a | <pre>list(object({<br>    name           = string<br>    attribute      = string<br>    all_identities = bool<br>  }))</pre> | n/a | yes |
+| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | n/a | <pre>list(object({<br>    name           = string<br>    attribute      = string<br>    all_identities = bool<br>    roles = list(string)<br>  }))</pre> | n/a | yes |
 | <a name="input_wif_providers"></a> [wif\_providers](#input\_wif\_providers) | n/a | `list(any)` | n/a | yes |
 
 ## Outputs
