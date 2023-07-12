@@ -28,6 +28,7 @@ resource "google_iam_workload_identity_pool_provider" "example" {
     content {
       issuer_uri        = each.value.provider_config.issuer_uri
       allowed_audiences = lookup(each.value.provider_config, "allowed_audiences", null) == null ? null : split(",", each.value.provider_config.allowed_audiences)
+      jwks_json         = lookup(each.value.provider_config, "jwks_json", null)
     }
   }
 
@@ -50,8 +51,8 @@ resource "google_service_account_iam_member" "member" {
 
 
 resource "google_project_iam_member" "project" {
-  for_each = toset(distinct(flatten([for sa in var.service_accounts: [for role in sa.roles: "${sa.name}=>${role}"]])))
+  for_each = toset(distinct(flatten([for sa in var.service_accounts : [for role in sa.roles : "${sa.name}=>${role}"]])))
   project  = var.project_id
   role     = split("=>", each.value).1
-  member   = "serviceAccount:${google_service_account.service_account[split("=>",each.value).0].email}"
+  member   = "serviceAccount:${google_service_account.service_account[split("=>", each.value).0].email}"
 }
