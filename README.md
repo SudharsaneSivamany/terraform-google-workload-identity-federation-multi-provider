@@ -63,6 +63,7 @@ module "wif" {
 
 ```
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -81,8 +82,9 @@ module "wif" {
 
 | Name | Type |
 |------|------|
-| [google_iam_workload_identity_pool.example](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool) | resource |
-| [google_iam_workload_identity_pool_provider.example](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider) | resource |
+| [google_iam_workload_identity_pool.primary](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool) | resource |
+| [google_iam_workload_identity_pool_provider.provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/iam_workload_identity_pool_provider) | resource |
+| [google_project_iam_member.project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_service_account.service_account](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 | [google_service_account_iam_member.member](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_iam_member) | resource |
 
@@ -95,7 +97,7 @@ module "wif" {
 | <a name="input_pool_display_name"></a> [pool\_display\_name](#input\_pool\_display\_name) | n/a | `string` | `null` | no |
 | <a name="input_pool_id"></a> [pool\_id](#input\_pool\_id) | n/a | `string` | n/a | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | n/a | `string` | n/a | yes |
-| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | n/a | <pre>list(object({<br>    name           = string<br>    attribute      = string<br>    all_identities = bool<br>    roles = list(string)<br>  }))</pre> | n/a | yes |
+| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | n/a | <pre>list(object({<br>    name           = string<br>    attribute      = string<br>    all_identities = bool<br>    roles          = list(string)<br>  }))</pre> | n/a | yes |
 | <a name="input_wif_providers"></a> [wif\_providers](#input\_wif\_providers) | n/a | `list(any)` | n/a | yes |
 
 ## Outputs
@@ -107,3 +109,4 @@ module "wif" {
 | <a name="output_pool_state"></a> [pool\_state](#output\_pool\_state) | Pool state |
 | <a name="output_provider_id"></a> [provider\_id](#output\_provider\_id) | Provider id |
 | <a name="output_service_account"></a> [service\_account](#output\_service\_account) | Service Account name |
+<!-- END_TF_DOCS -->
