@@ -92,13 +92,13 @@ module "wif" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_pool_description"></a> [pool\_description](#input\_pool\_description) | n/a | `string` | `null` | no |
-| <a name="input_pool_disabled"></a> [pool\_disabled](#input\_pool\_disabled) | n/a | `bool` | `false` | no |
-| <a name="input_pool_display_name"></a> [pool\_display\_name](#input\_pool\_display\_name) | n/a | `string` | `null` | no |
-| <a name="input_pool_id"></a> [pool\_id](#input\_pool\_id) | n/a | `string` | n/a | yes |
-| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | n/a | `string` | n/a | yes |
-| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | n/a | <pre>list(object({<br>    name           = string<br>    attribute      = string<br>    all_identities = bool<br>    roles          = list(string)<br>  }))</pre> | n/a | yes |
-| <a name="input_wif_providers"></a> [wif\_providers](#input\_wif\_providers) | n/a | `list(any)` | n/a | yes |
+| <a name="input_pool_description"></a> [pool\_description](#input\_pool\_description) | Workload identity federation pool description | `string` | `null` | no |
+| <a name="input_pool_disabled"></a> [pool\_disabled](#input\_pool\_disabled) | Whether workload identity federation pool is disabled | `bool` | `false` | no |
+| <a name="input_pool_display_name"></a> [pool\_display\_name](#input\_pool\_display\_name) | Workload identity federation pool name | `string` | `null` | no |
+| <a name="input_pool_id"></a> [pool\_id](#input\_pool\_id) | Workload identity federation pool id | `string` | n/a | yes |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | Project ID | `string` | n/a | yes |
+| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | Definition of GCP service accounts to manage | <pre>list(object({<br>    name           = string<br>    attribute      = string<br>    all_identities = bool<br>    roles          = list(string)<br>  }))</pre> | n/a | yes |
+| <a name="input_wif_providers"></a> [wif\_providers](#input\_wif\_providers) | Definition of workload identity federation pool providers | `list(any)` | n/a | yes |
 
 ## Outputs
 
