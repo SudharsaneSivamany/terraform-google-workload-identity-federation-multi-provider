@@ -1,28 +1,34 @@
 variable "pool_id" {
-  type = string
+  type        = string
+  description = "Workload identity federation pool id"
 }
 
 variable "project_id" {
-  type = string
+  type        = string
+  description = "Project ID"
 }
 
 variable "pool_display_name" {
-  type    = string
-  default = null
+  type        = string
+  description = "Workload identity federation pool name"
+  default     = null
 }
 
 variable "pool_description" {
-  type    = string
-  default = null
+  type        = string
+  description = "Workload identity federation pool description"
+  default     = null
 }
 
 variable "pool_disabled" {
-  type    = bool
-  default = false
+  type        = bool
+  description = "Whether workload identity federation pool is disabled"
+  default     = false
 }
 
 variable "wif_providers" {
-  type = list(any)
+  type        = list(any)
+  description = "Definition of workload identity federation pool providers"
 }
 
 variable "service_accounts" {
@@ -32,4 +38,5 @@ variable "service_accounts" {
     all_identities = bool
     roles          = list(string)
   }))
+  description = "Definition of GCP service accounts to manage"
 }
