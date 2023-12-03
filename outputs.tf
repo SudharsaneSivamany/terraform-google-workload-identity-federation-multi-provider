@@ -1,23 +1,23 @@
 output "pool_id" {
   description = "Pool id"
-  value       = google_iam_workload_identity_pool.example.id
+  value       = google_iam_workload_identity_pool.primary.id
 }
 
 output "pool_state" {
   description = "Pool state"
-  value       = google_iam_workload_identity_pool.example.state
+  value       = google_iam_workload_identity_pool.primary.state
 }
 
 output "pool_name" {
   description = "Pool name"
-  value       = google_iam_workload_identity_pool.example.name
+  value       = google_iam_workload_identity_pool.primary.name
 }
 
 output "provider_id" {
   description = "Provider id"
-  value = { for id in var.wif_providers : id.provider_id => { id = google_iam_workload_identity_pool_provider.example[id.provider_id].id
-    state = google_iam_workload_identity_pool_provider.example[id.provider_id].state
-    name = google_iam_workload_identity_pool_provider.example[id.provider_id].name }
+  value = { for id in var.wif_providers : id.provider_id => { id = google_iam_workload_identity_pool_provider.provider[id.provider_id].id
+    state = google_iam_workload_identity_pool_provider.provider[id.provider_id].state
+    name = google_iam_workload_identity_pool_provider.provider[id.provider_id].name }
   }
 }
 

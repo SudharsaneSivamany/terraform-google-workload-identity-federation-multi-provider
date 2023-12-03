@@ -1,4 +1,4 @@
-resource "google_iam_workload_identity_pool" "example" {
+resource "google_iam_workload_identity_pool" "primary" {
   workload_identity_pool_id = var.pool_id
   project                   = var.project_id
   display_name              = var.pool_display_name
@@ -6,9 +6,9 @@ resource "google_iam_workload_identity_pool" "example" {
   disabled                  = var.pool_disabled
 }
 
-resource "google_iam_workload_identity_pool_provider" "example" {
+resource "google_iam_workload_identity_pool_provider" "provider" {
   for_each                           = { for i in var.wif_providers : i.provider_id => i }
-  workload_identity_pool_id          = google_iam_workload_identity_pool.example.workload_identity_pool_id
+  workload_identity_pool_id          = google_iam_workload_identity_pool.primary.workload_identity_pool_id
   workload_identity_pool_provider_id = each.value.provider_id
   project                            = var.project_id
   display_name                       = lookup(each.value, "display_name", null)
@@ -45,7 +45,7 @@ resource "google_service_account_iam_member" "member" {
   for_each = { for account in var.service_accounts : account.name => account }
 
   service_account_id = google_service_account.service_account[each.value.name].name
-  member             = "${each.value.all_identities == false ? "principal" : "principalSet"}://iam.googleapis.com/${google_iam_workload_identity_pool.example.name}/${each.value.attribute}"
+  member             = "${each.value.all_identities == false ? "principal" : "principalSet"}://iam.googleapis.com/${google_iam_workload_identity_pool.primary.name}/${each.value.attribute}"
   role               = "roles/iam.workloadIdentityUser"
 }
 
