@@ -31,6 +31,12 @@ resource "google_iam_workload_identity_pool_provider" "provider" {
       jwks_json         = lookup(each.value.provider_config, "jwks_json", null)
     }
   }
+  dynamic "saml" {
+    for_each = lookup(each.value, "select_provider", null) == "saml" ? ["1"] : []
+    content {
+      idp_metadata_xml = file(each.value.provider_config.idp_metadata_xml)
+    }
+  }
 
 }
 
