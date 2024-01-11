@@ -1,6 +1,6 @@
 # GCP Worload Identity Federation Multi Provider Module
 The Workload identity federation module is used to impersonate a gcp service account from the credentials issued by an external identity provider and access resources on Google Cloud. 
-This module will create pool,providers(aws/oidc)and service account used for setting up workload identity federation.
+This module will create pool,providers(aws/oidc/saml)and service account used for setting up workload identity federation.
 ## Roles Needed
 
 * roles/iam.workloadIdentityPoolAdmin
@@ -68,7 +68,7 @@ module "wif" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | >= 3.45, < 6.0.0 |
 
 ## Providers
@@ -100,7 +100,7 @@ No modules.
 | <a name="input_pool_display_name"></a> [pool\_display\_name](#input\_pool\_display\_name) | Workload identity federation pool name | `string` | `null` | no |
 | <a name="input_pool_id"></a> [pool\_id](#input\_pool\_id) | Workload identity federation pool id | `string` | n/a | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | Project ID | `string` | n/a | yes |
-| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | Definition of GCP service accounts to manage | <pre>list(object({<br>    name           = string<br>    attribute      = string<br>    all_identities = bool<br>    roles          = list(string)<br>  }))</pre> | n/a | yes |
+| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | Definition of GCP service accounts to manage | <pre>list(object({<br>    name           = string<br>    attribute      = string<br>    all_identities = bool<br>    display_name   = optional(string)<br>    description    = optional(string)<br>    roles          = optional(list(string), [])<br>    disabled       = optional(bool, false)<br>  }))</pre> | n/a | yes |
 | <a name="input_wif_providers"></a> [wif\_providers](#input\_wif\_providers) | Definition of workload identity federation pool providers | `list(any)` | n/a | yes |
 
 ## Outputs
@@ -112,4 +112,5 @@ No modules.
 | <a name="output_pool_state"></a> [pool\_state](#output\_pool\_state) | Pool state |
 | <a name="output_provider_id"></a> [provider\_id](#output\_provider\_id) | Provider id |
 | <a name="output_service_account"></a> [service\_account](#output\_service\_account) | Service Account name |
+
 <!-- END_TF_DOCS -->

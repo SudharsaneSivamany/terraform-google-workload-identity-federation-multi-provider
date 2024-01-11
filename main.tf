@@ -41,9 +41,12 @@ resource "google_iam_workload_identity_pool_provider" "provider" {
 }
 
 resource "google_service_account" "service_account" {
-  for_each   = toset([for sa_name in var.service_accounts : sa_name.name])
-  account_id = each.value
-  project    = var.project_id
+  for_each     = { for sa_name in var.service_accounts : sa_name.name => sa_name }
+  account_id   = each.value.name
+  project      = var.project_id
+  description  = each.value.description
+  display_name = each.value.display_name
+  disabled     = each.value.disabled
 }
 
 

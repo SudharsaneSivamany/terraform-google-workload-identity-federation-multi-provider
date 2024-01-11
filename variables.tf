@@ -36,7 +36,10 @@ variable "service_accounts" {
     name           = string
     attribute      = string
     all_identities = bool
-    roles          = list(string)
+    display_name   = optional(string)
+    description    = optional(string)
+    roles          = optional(list(string), [])
+    disabled       = optional(bool, false)
   }))
   description = "Definition of GCP service accounts to manage"
 }

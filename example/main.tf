@@ -1,10 +1,10 @@
 module "wif" {
   source = "../"
 
-  project_id = "my-project"
-  pool_id    = "my-pool"
+  project_id = "burner-sudsivam"
+  pool_id    = "my-pool-tet"
   wif_providers = [
-    { provider_id     = "my-provider-1"
+    { provider_id     = "my-provider-1-t"
       select_provider = "oidc"
       provider_config = {
         issuer_uri        = "https://token.actions.githubusercontent.com"
@@ -20,7 +20,7 @@ module "wif" {
       }
     },
     {
-      provider_id     = "my-provider-2"
+      provider_id     = "my-provider-2-t"
       select_provider = "aws"
       provider_config = {
         account_id = "999999999999"
@@ -33,7 +33,7 @@ module "wif" {
       }
     },
     {
-      provider_id     = "my-provider-3"
+      provider_id     = "my-provider-3-t"
       select_provider = "saml"
       provider_config = {
         idp_metadata_xml = "${path.module}/metadata.xml"
