@@ -1,8 +1,8 @@
 module "wif" {
   source = "../"
 
-  project_id = "burner-sudsivam"
-  pool_id    = "my-pool-tet"
+  project_id = "project-1"
+  pool_id    = "my-test-pool"
   wif_providers = [
     { provider_id     = "my-provider-1-t"
       select_provider = "oidc"
@@ -53,6 +53,7 @@ module "wif" {
       attribute      = "attribute.repository/my-org/my-repo"
       all_identities = true
       roles          = ["roles/compute.admin"]
+      display_name   = "wif-sa-test"
     }
   ]
 }
